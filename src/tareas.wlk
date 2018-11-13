@@ -6,6 +6,7 @@ class Maquina {
 	method arreglar(empleado) {
 		
 		self.cumpleRequerimientos(empleado)
+		
 		empleado.perderEstamina(complejidad)
 		empleado.tareasRealizadas().add(self)
 		empleado.dificultadTareasRealizadas(empleado.dificultadTareasRealizadas() + complejidad * 2)
@@ -63,6 +64,12 @@ class Sector {
 	method limpiar(empleado) {
 		
 		self.cumpleRequisitosLimpieza(empleado)
+		if (!empleado.esMucama() && self.esGrande()) {
+			empleado.perderEstamina(empleado.estamina() - 4)
+		}else if (!empleado.esMucama() && self.esChico()) {
+			empleado.perderEstamina(empleado.estamina() - 1)
+		}
+		empleado.tareasRealizadas().add(self)
 		
 	}
 	

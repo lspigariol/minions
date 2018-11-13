@@ -9,14 +9,48 @@ class Empleado {
 	var property practica = 0
 	var property fuerza
 	var property dificultadTareasRealizadas = 0
+	var experiencia
 
 	method arreglarMaquina(maquina) {
+		
+		if (!self.esCapataz()) {
+			maquina.arreglar(self)
+		}else {
+			rol.ordenarEmpleadosPorExperiencia()
+			if (rol.tieneEmpleados()){
+				maquina.arreglar(rol.first())
+			}
+			maquina.arreglar(self)
+		}
+		
 	}
 
 	method defenderSector(sector) {
+		
+		if (!self.esCapataz()) {
+			sector.defender(self)
+		}else {
+			rol.ordenarEmpleadosPorExperiencia()
+			if (rol.tieneEmpleados()){
+				sector.defender(rol.first())
+			}
+			sector.defender(self)
+		}
+		
 	}
 
 	method limpiarSector(sector) {
+		
+		if (!self.esCapataz()) {
+			sector.limpiar(self)
+		}else {
+			rol.ordenarEmpleadosPorExperiencia()
+			if (rol.tieneEmpleados()){
+				sector.limpiar(rol.first())
+			}
+			sector.limpiar(self)
+		}
+		
 	}
 
 	method comerFruta(fruta) {
@@ -57,6 +91,10 @@ class Empleado {
 	
 	method esMucama() {
 		return rol.equals(mucama)
+	}
+	
+	method esCapataz() {
+		return rol.equals(capataz)
 	}
 	
 	method fuerza() = estamina / 2 + 2 + practica * 3

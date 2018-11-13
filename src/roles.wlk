@@ -20,3 +20,15 @@ object mucama {
 	method fuerza() = 0
 	
 }
+
+object capataz {
+	
+	var empleados = []
+	
+	method ordenarEmpleadosPorExperiencia() {
+		empleados.orderBy({empleado => empleado.experiencia()})
+	}
+	
+	method tieneEmpleados() = empleados.size() > 0
+	
+}
